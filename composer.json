@@ -10,6 +10,7 @@
             "email": "hello@fm-a.dk"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
         "getkirby/composer-installer": "^1.1"
     },
