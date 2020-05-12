@@ -1,0 +1,21 @@
+{
+    "name": "f-mahler/kirby-vercel",
+    "description": "Kirby Vercel Plugin",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frederik Mahler-Anderen",
+            "email": "hello@fm-a.dk"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "KirbyVercel\\": "lib/"
+      }
+    },
+}
