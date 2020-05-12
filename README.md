@@ -14,7 +14,7 @@ Download and copy this repository to `/site/plugins/kirby-vercel`
 ### Composer
 
 ```
-coming soon
+composer require f-mahler/kirby-vercel
 ```
 
 ## Setup
