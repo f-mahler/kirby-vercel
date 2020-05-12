@@ -9,7 +9,7 @@ This is a plugin to deploy your static site directly from the Kirby Panel to Ver
 
 ### Download
 
-Download and copy this repository to `/site/plugins/kirby-vercel`.
+Download and copy this repository to `/site/plugins/kirby-vercel`
 
 ### Composer
 
@@ -26,6 +26,8 @@ return [
   'f-mahler.kirby-vercel.deployurl' => '<deployUrl>',
   'f-mahler.kirby-vercel.token' => '<token>',
   'f-mahler.kirby-vercel.projectid' => '<projectId>',
+  
+  // Automatically deploy when triggering one of the following hooks. See Kirby documentation for possible options
   'f-mahler.kirby-vercel.hooks' => [
     'site.update:after',
     'page.update:after'
@@ -34,7 +36,7 @@ return [
 
 ```
 
-In your blueprint
+In your blueprint (e.g. /site/blueprints/site.yml)
 
 ```
 vercel:
@@ -42,7 +44,6 @@ vercel:
   type: vercel
   button: true
   help: "Click to deploy the changes to the website"
-  width: 1/3
 ```
 
 ## License
