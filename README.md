@@ -2,6 +2,9 @@
 
 This is a plugin to deploy your static site directly from the Kirby Panel to Vercel.
 
+![](kirby-vercel.gif)
+
+
 ## Installation
 
 ### Download
