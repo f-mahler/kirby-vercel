@@ -1,6 +1,8 @@
 # Kirby Vercel
 
-This is a plugin to deploy your static site directly from the Kirby Panel to Vercel.
+This is a plugin to deploy your static site directly from the Kirby 3 to Vercel. 
+
+For it to work, Kirby needs to be set up as a headless CMS on it's own server, for example with [KQL](https://github.com/getkirby/kql) or [better-rest](https://github.com/robinscholz/better-rest) to access the API on your generated static site (e.g. Nuxt, Next, or whichever you prefer) that is then deployed to Vercel. 
 
 ![](kirby-vercel.gif)
 
