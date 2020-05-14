@@ -2,7 +2,7 @@
 
 This is a plugin to deploy your static site directly from the Kirby 3 to Vercel. 
 
-For it to work, Kirby needs to be set up as a headless CMS on it's own server, for example with [KQL](https://github.com/getkirby/kql) or [better-rest](https://github.com/robinscholz/better-rest) to fetch content on your static site (e.g. Nuxt, Next, or whichever you prefer) that is then deployed to Vercel. 
+For it to work, Kirby needs to be set up as a headless CMS on its own server, for example with [KQL](https://github.com/getkirby/kql) or [better-rest](https://github.com/robinscholz/better-rest) to fetch content on your static site (e.g. Nuxt, Next, or whichever you prefer) that is then deployed to Vercel. 
 
 ![](kirby-vercel.gif)
 
@@ -25,7 +25,10 @@ composer require f-mahler/kirby-vercel
 
 ```php
 return [
-  'f-mahler.kirby-vercel.deployurl' => '<deployUrl>',
+   // Required to make the button work. You can generate a Deployment Hook in Project Settings -> Git Integration in Vercel's Dashboard
+  'f-mahler.kirby-vercel.deployurl' => '<deployUrl>', 
+  
+  // To show the last deployment in the field, you need to add these settings
   'f-mahler.kirby-vercel.token' => '<token>',
   'f-mahler.kirby-vercel.projectid' => '<projectId>',
   
