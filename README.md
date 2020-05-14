@@ -2,9 +2,9 @@
 
 This is a plugin to trigger [deploy hooks](https://vercel.com/docs/v2/more/deploy-hooks) of a static site with Vercel directly from the Kirby panel.
 
-For it to work, Kirby needs to be set up as a headless CMS on its own server, for example with [KQL](https://github.com/getkirby/kql) or [better-rest](https://github.com/robinscholz/better-rest) to fetch content on your static site (e.g. Nuxt, Next, or whichever you prefer) that is then deployed to Vercel via its own repository. 
+For it to work, Kirby needs to be set up as a headless CMS on its own server, for example with [KQL](https://github.com/getkirby/kql) or [better-rest](https://github.com/robinscholz/better-rest) to fetch content on your static site generator (e.g. Nuxt, Next, or whichever you prefer) that is then deployed to Vercel via its own repository. 
 
-_It does not generate a static site of Kirby that is deployed to Vercel directly_
+_It does **not** generate a static site of Kirby that is deployed to Vercel directly_
 
 ![](kirby-vercel.gif)
 
