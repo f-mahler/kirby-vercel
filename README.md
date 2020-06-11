@@ -53,7 +53,8 @@ vercel:
 You can optionally add the following:
 
 ```
-button: true
+button: true // set to "false" to hide button, e.g. when using automatic hooks
+// to change the wording of the button you can use these options
 deploy: "Publish website"
 loading: "Loading.."
 complete: "Finished"
