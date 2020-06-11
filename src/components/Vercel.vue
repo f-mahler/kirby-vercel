@@ -10,12 +10,29 @@
       v-if="button"
       class="k-vercel-button"
       @click="deploy"
-      :class="{ loading: loading, success: success, error: error }"
+      :class="{
+        loading: loading,
+        success: success,
+        error: error
+      }"
     >
       <span v-if="loading">Deploying...</span>
       <span v-else-if="success">Complete</span>
-      <span v-else-if="error">An error occured</span>
+      <span v-else-if="error">Failed</span>
       <span v-else>Deploy</span>
+      <div
+        v-if="latest && !loading && !success && !error"
+        class="k-vercel-changes"
+        :class="{ new: newContent }"
+      >
+        <span v-if="newContent"
+          >{{ siteModified.count }} new change<span
+            v-if="siteModified.count > 1"
+            >s</span
+          ></span
+        >
+        <span v-else>LATEST</span>
+      </div>
     </div>
     <div
       v-if="help"
@@ -33,20 +50,30 @@ export default {
   props: {
     label: String,
     button: Boolean,
-    help: String
+    help: String,
+    siteModified: Object
   },
   data() {
     return {
       loading: false,
       error: null,
       success: false,
-      latest: null
+      latest: null,
+      newContent: false
     };
   },
   created() {
     this.getLatest();
   },
   methods: {
+    checkSiteModified() {
+      var latestDeploy = this.latest.created.toString().slice(0, -3);
+      if (this.siteModified.timestamp > parseInt(latestDeploy)) {
+        this.newContent = true;
+      } else {
+        this.newContent = false;
+      }
+    },
     deploy() {
       this.success = false;
       this.error = false;
@@ -66,6 +93,7 @@ export default {
           setTimeout(() => {
             this.success = false;
             this.getLatest();
+            this.checkSiteModified();
           }, 10000);
         })
         .catch(() => {
@@ -79,6 +107,7 @@ export default {
         .then(response => {
           var res = JSON.parse(response);
           this.latest = res.deployments[0];
+          this.checkSiteModified();
         })
         .catch(e => {
           console.log(e);
@@ -108,6 +137,23 @@ export default {
   background: white;
   box-shadow: 0 2px 5px rgba(22, 23, 26, 0.05);
   transition: background 0.5s, color 0.5s;
+  position: relative;
+  .k-vercel-changes {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.02rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    background: #5d800d;
+    color: white;
+    transform: translate(0, -50%);
+    &.new {
+      background: #f5871f;
+    }
+  }
   &:before {
     content: "▲";
     padding-right: 0.5rem;
@@ -116,16 +162,20 @@ export default {
     background: rgba(255, 255, 255, 0.6);
   }
   &.loading {
-    background: black;
-    color: white;
+    background: black !important;
+    color: white !important;
   }
   &.success {
-    background: #5d800d;
-    color: white;
+    background: #5d800d !important;
+    color: white !important;
   }
   &.error {
-    background: #c82829;
-    color: white;
+    background: #c82829 !important;
+    color: white !important;
+  }
+  &.new {
+    background: #f5871f;
+    color: black;
   }
 }
 .k-vercel-latest {

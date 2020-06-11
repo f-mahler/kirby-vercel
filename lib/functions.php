@@ -10,8 +10,10 @@ class App {
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_FAILONERROR, true);
     $output = curl_exec($handle);
     curl_close($handle);
+    kirby()->cache('f-mahler.kirby-vercel')->flush();
     return json_encode($output);
   }
 

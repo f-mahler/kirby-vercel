@@ -7,6 +7,7 @@ Kirby::plugin('f-mahler/kirby-vercel', [
     'token' => 'default',
     'projectid' => 'default',
     'hooks' => null,
+    'cache' => true,
   ],
   'fields' => [
       'vercel' => [
@@ -21,6 +22,16 @@ Kirby::plugin('f-mahler/kirby-vercel', [
             return $value;
           },
         ],
+        'computed' => [
+          'siteModified' => function () {
+            $cache = kirby()->cache('f-mahler.kirby-vercel');
+            $modified = [
+              'timestamp' => $cache->get('timestamp'),
+              'count' => $cache->get('count')
+            ];
+            return $modified;
+          }
+        ]
       ]
   ],
   'hooks' => @include_once __DIR__ . '/lib/hooks.php',
