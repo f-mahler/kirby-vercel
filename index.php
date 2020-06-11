@@ -15,6 +15,18 @@ Kirby::plugin('f-mahler/kirby-vercel', [
           'label' => function ($value = "Vercel") {
             return $value;
           },
+          'deploy' => function ($value = "Deploy") {
+            return $value;
+          },
+          'loading' => function ($value = "Deploying...") {
+            return $value;
+          },
+          'complete' => function ($value = "Complete") {
+            return $value;
+          },
+          'error' => function ($value = "Failed to deploy") {
+            return $value;
+          },
           'button' => function ($value = true) {
             return $value;
           },

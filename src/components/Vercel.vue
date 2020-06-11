@@ -9,29 +9,24 @@
     <div
       v-if="button"
       class="k-vercel-button"
-      @click="deploy"
+      @click="deploySite"
       :class="{
-        loading: loading,
-        success: success,
-        error: error
+        loading: isLoading,
+        success: isSuccess,
+        error: isError
       }"
     >
-      <span v-if="loading">Deploying...</span>
-      <span v-else-if="success">Complete</span>
-      <span v-else-if="error">Failed</span>
-      <span v-else>Deploy</span>
+      <span v-if="isLoading">{{ loading }}</span>
+      <span v-else-if="isSuccess">{{ complete }}</span>
+      <span v-else-if="isError">{{ error }}</span>
+      <span v-else>{{ deploy }}</span>
       <div
-        v-if="latest && !loading && !success && !error"
+        v-if="latest && !isLoading && !isSuccess && !isError"
         class="k-vercel-changes"
         :class="{ new: newContent }"
       >
-        <span v-if="newContent"
-          >{{ siteModified.count }} new change<span
-            v-if="siteModified.count > 1"
-            >s</span
-          ></span
-        >
-        <span v-else>LATEST</span>
+        <span v-if="newContent">{{ siteModified.count }} &uarr;</span>
+        <k-icon v-else type="check">
       </div>
     </div>
     <div
@@ -49,15 +44,19 @@ var relativeTime = require("dayjs/plugin/relativeTime");
 export default {
   props: {
     label: String,
+    deploy: String,
+    loading: String,
+    complete: String,
+    error: String,
     button: Boolean,
     help: String,
     siteModified: Object
   },
   data() {
     return {
-      loading: false,
-      error: null,
-      success: false,
+      isLoading: false,
+      isError: null,
+      isSuccess: false,
       latest: null,
       newContent: false
     };
@@ -74,11 +73,11 @@ export default {
         this.newContent = false;
       }
     },
-    deploy() {
-      this.success = false;
-      this.error = false;
+    deploySite() {
+      this.isSuccess = false;
+      this.isError = false;
       this.latest = null;
-      this.loading = true;
+      this.isLoading = true;
       this.$api
         .get("vercel")
         .then(response => {
@@ -87,18 +86,18 @@ export default {
           job["state"] = res.job.state;
           job["created"] = res.job.createdAt;
           this.latest = job;
-          this.loading = false;
-          this.error = false;
-          this.success = true;
+          this.isLoading = false;
+          this.isError = false;
+          this.isSuccess = true;
           setTimeout(() => {
-            this.success = false;
+            this.isSuccess = false;
             this.getLatest();
             this.checkSiteModified();
           }, 10000);
         })
         .catch(() => {
-          this.loading = false;
-          this.error = true;
+          this.isLoading = false;
+          this.isError = true;
         });
     },
     getLatest() {
@@ -118,7 +117,7 @@ export default {
     date(value) {
       if (!value) return "";
       dayjs.extend(relativeTime);
-      return dayjs(value).fromNow();
+      return dayjs(value).locale('fr').fromNow();
     }
   }
 };
@@ -147,11 +146,11 @@ export default {
     position: absolute;
     right: 1rem;
     top: 50%;
-    background: #5d800d;
-    color: white;
+    color: #5d800d;
     transform: translate(0, -50%);
     &.new {
       background: #f5871f;
+      color: white;
     }
   }
   &:before {

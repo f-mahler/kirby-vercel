@@ -2,7 +2,7 @@
   "name": "f-mahler/kirby-vercel",
   "description": "Kirby Vercel Plugin",
   "type": "kirby-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "authors": [
     {
