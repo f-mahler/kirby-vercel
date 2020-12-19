@@ -1,7 +1,7 @@
 <template>
   <div class="k-vercel">
     <div class="k-vercel-label">
-      <k-headline>{{ label }}</k-headline>
+      <k-headline>{{ label }} {{ latest }}</k-headline>
       <div v-if="latest" class="k-vercel-latest">
         <span :data-status="latest.state"></span>{{ latest.created | date }}
       </div>
@@ -104,6 +104,7 @@ export default {
       this.$api
         .get("vercel/latest")
         .then(response => {
+          console.log(response);
           var res = JSON.parse(response);
           this.latest = res.deployments[0];
           this.checkSiteModified();

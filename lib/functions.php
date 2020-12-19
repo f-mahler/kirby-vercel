@@ -1,9 +1,8 @@
 <?php
 
-namespace KirbyVercel;
+namespace Lib\KirbyVercel;
 
-class App {
-
+class Functions {
   public static function deploy()
   {
     $url = option('f-mahler.kirby-vercel.deployurl');

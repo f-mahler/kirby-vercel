@@ -52,13 +52,13 @@ Kirby::plugin('f-mahler/kirby-vercel', [
       [
         'pattern' => 'vercel',
         'action'  => function() {
-          return \KirbyVercel\App::deploy();
+          return Lib\KirbyVercel\Functions::deploy();
         }
       ],
       [
         'pattern' => 'vercel/latest',
         'action'  => function() {
-          return \KirbyVercel\App::latest();
+          return Lib\KirbyVercel\Functions::latest();
         }
       ],
     ]
