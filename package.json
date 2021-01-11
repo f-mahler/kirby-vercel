@@ -13,7 +13,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dayjs": "^1.8.26",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4"

@@ -1,7 +1,7 @@
 <template>
   <div class="k-vercel">
     <div class="k-vercel-label">
-      <k-headline>{{ label }} {{ latest }}</k-headline>
+      <k-headline>{{ label }}</k-headline>
       <div v-if="latest" class="k-vercel-latest">
         <span :data-status="latest.state"></span>{{ latest.created | date }}
       </div>
