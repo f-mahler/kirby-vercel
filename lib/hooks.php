@@ -17,7 +17,7 @@ $hooks = [];
 function deploy(string $name)
 {
 	return function ($input) use ($name) {
-    \KirbyVercel\App::deploy();
+        Lib\KirbyVercel\Functions::deploy();
 	};
 }
 
