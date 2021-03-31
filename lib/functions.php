@@ -6,6 +6,10 @@ class Functions {
   public static function deploy()
   {
     $url = option('f-mahler.kirby-vercel.deployurl');
+    if (is_callable($url)) {
+      $url = $url();
+    }
+
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -18,7 +22,15 @@ class Functions {
 
   public static function latest() {
     $token = option('f-mahler.kirby-vercel.token');
+    if (is_callable($token)) {
+      $token = $token();
+    }
+
     $projectid = option('f-mahler.kirby-vercel.projectid');
+    if (is_callable($projectid)) {
+      $projectid = $projectid();
+    }
+
     $url = 'https://api.vercel.com/v5/now/deployments?limit=1&projectId=' . $projectid;
     $authorization = "Authorization: Bearer " . $token;
     $handle = curl_init();
