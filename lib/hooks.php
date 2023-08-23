@@ -1,6 +1,6 @@
 <?php
 
-$names = option('f-mahler.kirby-vercel.hooks');
+$names = option('f-mahler.kirby-vercel.hooks') ?? []; // If no hooks are set, use an empty array
 if (is_callable($names)) {
     $names = $names();
 }
