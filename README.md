@@ -1,3 +1,4 @@
+# DEPRECATED
 # Kirby Vercel
 
 This is a plugin to trigger [deploy hooks](https://vercel.com/docs/v2/more/deploy-hooks) of a static site with Vercel directly from the Kirby panel.
